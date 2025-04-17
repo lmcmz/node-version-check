@@ -2,11 +2,11 @@
   "name": "node-version-check",
   "version": "1.0.0",
   "description": "A simple MCP server to check Node.js version",
-  "main": "index.js",
+  "main": "direct.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node direct.js"
   },
-  "bin": "./index.js",
+  "bin": "./direct.js",
   "author": "",
   "license": "MIT"
 }
