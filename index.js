@@ -1,15 +1,28 @@
 #!/usr/bin/env node
 
-// Immediately log Node.js version information
-console.log('====================================');
-console.log('Node.js Version Check for MCP Server');
-console.log('====================================');
-console.log(`Node Version: ${process.version}`);
-console.log(`Processors: ${require('os').cpus().length}`);
-console.log(`Architecture: ${process.arch}`);
-console.log(`Platform: ${process.platform}`);
-console.log(`MCP Environment: Yes`);
-console.log('====================================');
+// Use a child process to run node -v
+const { execSync } = require('child_process');
 
-// Exit after logging
+try {
+  // Execute node -v and capture the output
+  const nodeVersion = execSync('node -v').toString().trim();
+  const npmVersion = execSync('npm -v').toString().trim();
+  
+  console.log('====================================');
+  console.log('Node.js Version Check for MCP Server');
+  console.log('====================================');
+  console.log(`Node Version: ${nodeVersion}`);
+  console.log(`NPM Version: ${npmVersion}`);
+  console.log(`Process Version: ${process.version}`);
+  console.log(`Environment: MCP`);
+  console.log('====================================');
+  
+  // Write to stdout directly
+  process.stdout.write(`NODE_VERSION=${nodeVersion}\n`);
+} catch (error) {
+  console.error('Error checking Node.js version:', error);
+  process.exit(1);
+}
+
+// Exit successfully
 process.exit(0);
